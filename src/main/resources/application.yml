@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+payment-config:
+  types:
+    IN-UPI-MERCHANT-PAYMENT:
+      mandatory-fields: name,accountno,payee name,payees accountno,payee bank code,amount
+      dataCollectors: FetchAccountDetails,FetchAccountLimits,FetchCreditCardDetails
+      rules: AccountBalance,DailyLimit,OverallLimit,CurrencyLimit,PayeeBankLimit,CreditCardLimit
+    IN-UPI-ACCOUNT-PAYMENT:
+      mandatory-fields: name,accountno,payee name,payees accountno,payee bank code,amount
+      dataCollectors: FetchAccountDetails,FetchAccountLimits
+      rules: AccountBalance,DailyLimit,OverallLimit,CurrencyLimit,PayeeBankLimit
+    IN-UPI-CARD-PAYMENT:
+      mandatory-fields: name,accountno,payee name,payees accountno,payee bank code,amount
+      dataCollectors: FetchCreditCardDetails,FetchPayeeBanks
+      rules: AccountBalance,DailyLimit,OverallLimit,CurrencyLimit,PayeeBankLimit,CreditCardLimit
